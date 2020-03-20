@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <canvas id = "canvas" width = "800" height = "700" style="border:1px solid #c3c3c3;"></canvas>
+        <script>
+            function draw(){
+                var canvas = document.getElementById("canvas");
+
+                if (canvas.getContext){
+                    var context= canvas.getContext('2d');
+                    var height = 700;
+                    var canWidth = 600;
+                    var canHeight = 600;
+                    var graphData = [ { name: "Apple", quantity: 20, width: canWidth, color: "red"}, 
+                                    { name: "Orange", quantity: 10, width: canWidth/2, color: "orange"},
+                                    { name: "Banana", quantity: 15, width: 0.75*canWidth, color: "yellow"},
+                                    { name: "Kiwi", quantity: 3, width: (canWidth/20)*3, color: "green"},
+                                    { name: "Blueberry", quantity: 5, width: canWidth/4, color: "blue"},
+                                    { name: "Grapes", quantity: 8, width: (canWidth/20)*8, color: "purple"}];
+                    context.font = "20px Arial";
+                    for ( i=0; i<graphData.length ; i++){
+                        context.fillStyle=graphData[i].color;
+                        context.fillText(graphData[i].name, 10, i* canHeight/(graphData.length) -15 + (canHeight/(graphData.length+3)));
+                        //context.fillText(graphData[i].name,0, i* line*(i+1));
+                        context.fillRect(100, i* canHeight/(graphData.length) +15, graphData[i].width, canHeight/(graphData.length+2));
+                        context.fillStyle="black";
+                        context.fillText(graphData[i].quantity, 115, i* canHeight/(graphData.length) -15 + (canHeight/(graphData.length+3)));
+                        
+                    }
+                    context.font = "30px Arial";
+                    context.fillText("Lab 1 by Zainab Nathani", 10, height-50);
+                }
+            }
+            document.addEventListener('DOMContentLoaded', draw);
+        </script>
+    </head>
+    <body>          
+    </body>
+</html>
