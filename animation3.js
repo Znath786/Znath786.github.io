@@ -24,7 +24,6 @@ Scene.start = function () {
 	Scene.sprite.img.onload = function() {	  	
         Scene.sprite.offset=(Scene.canvas.width)/2-0.5*(Scene.sprite.frames[Scene.sprite.frame].frame.w) ;
         Scene.canvasContext.drawImage(Scene.sprite.img,Scene.sprite.frames[0].frame.x,Scene.sprite.frames[0].frame.y,Scene.sprite.frames[0].frame.w,Scene.sprite.frames[0].frame.h,Scene.sprite.offset,0,Scene.sprite.frames[0].frame.w,Scene.sprite.frames[0].frame.h);
-        Scene.mainloop();
     }
 };
 
