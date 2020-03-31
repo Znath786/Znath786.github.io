@@ -82,7 +82,7 @@ Scene.clearCanvas = function () {
         Scene.canvasContext.fillRect(0, 0, Scene.canvas.width, Scene.canvas.height);
         Scene.canvasContext.drawImage(Scene.ending.img,0.5 * Scene.canvas.width - 0.5 * Scene.ending.frames[0].frame.w , 0.5 * Scene.canvas.height - 0.5 * Scene.ending.frames[0].frame.h,Scene.ending.frames[0].frame.w,Scene.ending.frames[0].frame.h);
 	Scene.canvasContext.fillStyle="gray";
-	Scene.canvasContext.fillText("Image Property of Warner Bros", 800, 400);
+	Scene.canvasContext.fillText("Image Property of Warner Bros", 500, 550);
     } // otherwise draw the living room background and the cheese images
     else {
         Scene.canvasContext.drawImage(Scene.background.img,Scene.background.frames[Scene.background.frame].frame.x,Scene.background.frames[Scene.background.frame].frame.y,Scene.background.frames[Scene.background.frame].frame.w,Scene.background.frames[Scene.background.frame].frame.h,0,0,Scene.background.frames[Scene.background.frame].frame.w,Scene.background.frames[Scene.background.frame].frame.h);
