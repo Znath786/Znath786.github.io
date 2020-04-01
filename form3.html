@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1>Lab 3: Notes in Local Storage</h1>
+    </head>
+    <body> 
+        <form>
+            <label for="title">Notes Title:</label>
+            <input type="text" id="title" size="40" oninput="saveTitle()"><br><br>
+            <textarea id="notes" rows="10" cols="40" oninput="saveNotes()"></textarea><br><br>
+            <button type="undo" id = "undo" onclick="undoNotes()">UNDO</button>
+            <button type="clear" id= "clear" onclick="clearNotes()">CLEAR</button>
+        </form>
+        <script>
+            // only have an "else" alert message in the first test for localStorage in the program
+            if (typeof(Storage) !== "undefined") {
+                document.addEventListener( 'DOMContentLoaded', restore());
+            } else{
+                alert("Sorry Web Storage not supported. Program will not run as expected.");
+            }
+            
+            function restore(){
+                // if the notepage had been used before, restore the values that were saved for the notes and title
+                // else save the value of the title and notes as the empty String
+                if(localStorage.getItem("currentTitle") == null){
+                    localStorage.currentTitle = "";
+                }
+                document.getElementById('title').value =localStorage.currentTitle;
+                if(localStorage.getItem('currentNotes') == null){
+                    localStorage.currentNotes ="";
+                } 
+                document.getElementById('notes').value=localStorage.currentNotes;
+            }
+
+            function saveTitle(){
+                //when the value in the title input area is changed, the value is saved in localStorage
+                // as long as localStorage is supported
+                if (typeof(Storage) !== "undefined") 
+                    localStorage.currentTitle = document.getElementById('title').value;
+            }
+
+            function saveNotes(){
+              //if localStorage is suppported, when the value in the notes textarea is changed,  
+              //the value for the notes that is currently saved in localStorage is 
+              //assigned to the previousNotes variable which saves the value in case of an undo
+              //the currentNotes variable is updated according to the change
+              if (typeof(Storage) !== "undefined") {
+                localStorage.previousNotes = localStorage.currentNotes;
+                localStorage.currentNotes = document.getElementById('notes').value;
+              }
+            }
+
+            function undoNotes(){
+              // if localStorage is supported, the values of currentNotes and previousNotes are switched
+              // and the value in the textarea of the notes in updated to the value from 
+              //before the most recent change
+              if (typeof(Storage) !== "undefined") {
+                localStorage.temp = localStorage.previousNotes;
+                localStorage.previousNotes = localStorage.currentNotes;
+                localStorage.currentNotes = localStorage.temp;
+                document.getElementById('notes').value = localStorage.currentNotes;
+              }
+            }
+
+            function clearNotes(){
+              // if localStorage is supported, the currentNotes variable and the notes textarea are 
+              //updated to the emptyString so as to appear empty
+              // the value is not removed in case of an undo
+              if (typeof(Storage) !== "undefined") {
+                localStorage.previousNotes = localStorage.currentNotes;
+                localStorage.currentNotes = "";
+                document.getElementById('notes').value = localStorage.currentNotes;
+              }
+            }
+            </script>
+    </body>
+</html>
