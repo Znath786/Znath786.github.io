@@ -12,101 +12,96 @@
 </head>
 <body>
 
-<script type="text/javascript">
+    <script type="text/javascript">
+        <div id="scene" style="text-align:center;">
+            var config = {
+                type: Phaser.AUTO,
+                width: 800,
+                height: 600,
+                scene: {
+                    preload: preload,
+                    create: create,
+                }
+            };
 
-    var config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        scene: {
-            preload: preload,
-            create: create,
-            update: update
-        }
-    };
-
-    var game = new Phaser.Game(config);
+            var game = new Phaser.Game(config);
 
 
-    function preload ()
-    {
-        this.load.image('apple', 'assets/apple.png');
-        this.load.image('field', 'assets/field.jpg');
-        this.load.image('yellowFlower', 'assets/yellowFlower.png');
-        this.load.image('whiteRose', 'assets/whiteRose.png');
-        this.load.image('flower', 'assets/flower.png');
-        this.load.image('tangerine', 'assets/tangerine.png');
-        this.load.image('tree', 'assets/tree.png');
+            function preload ()
+            {
+                this.load.image('apple', 'assets/apple.png');
+                this.load.image('field', 'assets/field.jpg');
+                this.load.image('yellowFlower', 'assets/yellowFlower.png');
+                this.load.image('whiteRose', 'assets/whiteRose.png');
+                this.load.image('flower', 'assets/flower.png');
+                this.load.image('tangerine', 'assets/tangerine.png');
+                this.load.image('tree', 'assets/tree.png');
 
-    }
-    
-    function create (){
-        this.add.image(400, 300, 'field');
-        this.add.image(400, 390, 'tree');
-        this.add.image(600, 390, 'tree');
+            }
 
-        for (var i = 0; i<5; i++){
-            var tangerine = this.add.image(100, 550, 'tangerine');
-            tangerine.setInteractive();
-            this.input.setDraggable(tangerine);
-            this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-                gameObject.x = dragX;
-                gameObject.y = dragY;
-            });
-        }
-        
-        for (var i = 0; i<5; i++){
-            var apple = this.add.image(150, 550, 'apple');
-            apple.setInteractive();
-            this.input.setDraggable(apple);
-            this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-                gameObject.x = dragX;
-                gameObject.y = dragY;
-            });
-        }
+            function create (){
+                this.add.image(400, 300, 'field');
+                this.add.image(400, 390, 'tree');
+                this.add.image(600, 390, 'tree');
 
-        for (var i = 0; i<5; i++){
-            var yellowFlower = this.add.image(200, 550, 'yellowFlower');
-            yellowFlower.setInteractive();
-            this.input.setDraggable(yellowFlower);
-            this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-                gameObject.x = dragX;
-                gameObject.y = dragY;
-            });
-        }
+                for (var i = 0; i<5; i++){
+                    var tangerine = this.add.image(100, 550, 'tangerine');
+                    tangerine.setInteractive();
+                    this.input.setDraggable(tangerine);
+                    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+                        gameObject.x = dragX;
+                        gameObject.y = dragY;
+                    });
+                }
 
-        for (var i = 0; i<5; i++){
-            var whiteRose = this.add.image(250, 550, 'whiteRose');
-            whiteRose.setInteractive();
-            this.input.setDraggable(whiteRose);
-            this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
-                gameObject.x = dragX;
-                gameObject.y = dragY;
-            });
-        }
+                for (var i = 0; i<5; i++){
+                    var apple = this.add.image(150, 550, 'apple');
+                    apple.setInteractive();
+                    this.input.setDraggable(apple);
+                    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+                        gameObject.x = dragX;
+                        gameObject.y = dragY;
+                    });
+                }
 
-        this.add.text(200, 15, 'Lab 4: Drag & Drop', { fontSize: '32px', fill: 'black' });
-        this.add.text(150, 70, 'Fill the trees with fruits and flowers!', { fontSize: '20px', fill: 'black' });
+                for (var i = 0; i<5; i++){
+                    var yellowFlower = this.add.image(200, 550, 'yellowFlower');
+                    yellowFlower.setInteractive();
+                    this.input.setDraggable(yellowFlower);
+                    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+                        gameObject.x = dragX;
+                        gameObject.y = dragY;
+                    });
+                }
 
-        
-            
-    }
+                for (var i = 0; i<5; i++){
+                    var whiteRose = this.add.image(250, 550, 'whiteRose');
+                    whiteRose.setInteractive();
+                    this.input.setDraggable(whiteRose);
+                    this.input.on('drag', function (pointer, gameObject, dragX, dragY) {
+                        gameObject.x = dragX;
+                        gameObject.y = dragY;
+                    });
+                }
 
-    function makeInteractive(pointer, gameObject, dragX, dragY) {
-            gameObject.x = dragX;
-            gameObject.y = dragY;
-    }
+                this.add.text(200, 15, 'Lab 4: Drag & Drop', { fontSize: '32px', fill: 'black' });
+                this.add.text(150, 70, 'Fill the trees with fruits and flowers!', { fontSize: '20px', fill: 'black' });
 
-    
 
-    function update ()
-    {
-    }
 
-</script>
-<br><br>
-<a href="https://www.freepik.com/free-photos-vectors/background" style= font-size: 5px">Background vector created by freepik - www.freepik.com</a>
-<br><br>
-<A HREF="index.html">Back to Main Page </A>
+            }
+
+            function makeInteractive(pointer, gameObject, dragX, dragY) {
+                    gameObject.x = dragX;
+                    gameObject.y = dragY;
+            }
+
+        </div>
+    </script>
+    <br><br>        
+    <div style="text-align:center"> 
+        <a href="https://www.freepik.com/free-photos-vectors/background" style= font-size: 5px">Background vector created by freepik - www.freepik.com</a>
+        <A HREF="index.html">Back to Main Page </A>
+    </div>     
 </body>
 </html>
