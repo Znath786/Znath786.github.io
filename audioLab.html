@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <h1>Lab 6: Audio Lab</h1>
+        <h2>Click the buttons to play or pause the audio.</h2>
+
+
+    </head>
+    <body>
+        <audio id="car">
+            <source src="carHorn.ogg" type="audio/ogg">
+            <source src="carHorn.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="dogToy">
+            <source src="dogToy.ogg" type="audio/ogg">
+            <source src="dogToy.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="doorbell">
+            <source src="doorbell.ogg" type="audio/ogg">
+            <source src="doorbell.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="meow">
+            <source src="meow.ogg" type="audio/ogg">
+            <source src="meow.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio id="rain">
+            <source src="rain.ogg" type="audio/ogg">
+            <source src="rain.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+          
+        <button onclick="playCarHorn()" type="button">Play Car Horn</button>
+        <button onclick="pauseCarHorn()" type="button">Pause Car Horn</button> 
+        <br>
+        <button onclick="playDogToy()" type="button">Play Dog Toy</button>
+        <button onclick="pauseDogToy()" type="button">Pause Dog Toy</button> 
+        <br>
+        <button onclick="playDoorbell()" type="button">Play Doorbell</button>
+        <button onclick="pauseDoorbell()" type="button">Pause Doorbell</button> 
+        <br>
+        <button onclick="playMeow()" type="button">Play Cat</button>
+        <button onclick="pauseMeow()" type="button">Pause Cat</button> 
+        <br>
+        <button onclick="playRain()" type="button">Play Rain</button>
+        <button onclick="pauseRain()" type="button">Pause Rain</button> 
+          
+        <script>
+            function playCarHorn() { document.getElementById("car").play(); } 
+            function playDogToy() { document.getElementById("dogToy").play(); } 
+            function playDoorbell() { document.getElementById("doorbell").play(); } 
+            function playMeow() { document.getElementById("meow").play(); } 
+            function playRain() { document.getElementById("rain").play(); } 
+
+            
+            function pauseCarHorn() { document.getElementById("car").pause(); } 
+            function pauseDogToy() { document.getElementById("dogToy").pause(); } 
+            function pauseDoorbell() { document.getElementById("doorbell").pause(); } 
+            function pauseMeow() { document.getElementById("meow").pause(); } 
+            function pauseRain() { document.getElementById("rain").pause(); } 
+
+
+
+
+
+          </script>
+    </body>
+
+</html>
