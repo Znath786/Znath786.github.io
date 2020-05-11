@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <button id= "button" onclick="clickedButton()">Speak</button>
+    </head>
+    <body onload = "draw();">
+        <canvas id = "BarCanvas" width = "800" height= "600"></canvas>
+        <script>
+            var recognition;
+            var ctx;
+            var canvas;
+			function draw() {
+                recognition = new webkitSpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+
+				canvas = document.getElementById("BarCanvas");
+                if (canvas.getContext){
+                    ctx = canvas.getContext("2d");
+                    redrawCanvas("white", "black", 50);
+                    ctx.fillText(15, 15, "Say \"color _____\" to change the color of the circle. For example \"color blue\" to make the circle blue.");
+                    ctx.fillText(15, 45, "Say \"background _____\" to change the background color of the canvas. For example \"background yellow\" to make the background yellow.");
+                    ctx.fillText(15, 75, "Say \"size _____\" to change the size of the circle. For example \"size 50\" to make the circle with a diameter of 50.");
+                    ctx.fillText(15, 105, "Say \"Help\" for instructions.");
+                    ctx.fillText(15, 135, "Say \"About\" to learn more about the program.");
+                }	
+            }
+
+            function redrawCanvas(bgColor, circleColor, circleSize){
+                ctx.fillStyle =bgColor;
+                ctx.fillRect(0, 0, 800, 600); // CHECK FUNCTION
+                ctx.fillStyle =circleColor;
+                var rad = circleSize/2;
+				ctx.beginPath();
+                ctx.arc(400, 300, rad, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+
+            //recognition.onend = function (event) { };
+
+            var size;
+            var color;
+            var background;
+            recognition.onresult = function (event) {
+                var sizeChange=false;
+                var colorChange=false;
+                var bgChange
+                var word;
+                for (var i = event.resultIndex; i < event.results.length; ++i) {
+                    word= event.results[i][0].transcript;
+                    if(word === "help" || word === "Help"){
+                        speak("Say color, followed by a color, to set the circle color.  Say background, followed by a color, to set the background color. Say size, followed of a number from 1 to 300, to set the diameter of the circle. Say about, to hear about the program");
+                    }
+                    if(word === "about" || word === "About"){
+                        speak("This program was created by Zainab Nathani. It changes the background color, circle color and circle size based on user speech input")
+                    }
+                    if(word === "size" || word === "Size"){
+                        size = parseInt(event.results[i+1][0].transcript);
+                        if(!isNaN(size)){
+                            if(size>300){
+                                speak("Size too big, the size limit is 300");
+                            }
+                            else if(size<1){
+                                speak("Size too small, the minimize size is 1");
+                            }
+                            else{
+                                sizeChange =true;
+                            }
+                        }    
+                    }
+                    if(word === "color" || word === "Color"){
+                        color = event.results[i+1][0].transcript;
+                        if(isValidColor(color)){ colorChange =true; }
+                          
+                    }
+                    if(word === "background" || word === "Background"){
+                        background = event.results[i+1][0].transcript;
+                        bgChange =true;   
+                    }
+                }
+                if(sizeChange || bgChange || sizeChange){
+                    redrawCanvas(background, color, size);
+                }
+            };
+            
+            function clickedButton() {
+                var button = document.getElementById("button");
+                if(button.innerHTML === 'Speak'){
+                    button.value = "Stop";
+                    button.innerHTML = "Stop";
+                    recognition.start();
+                }else{
+                    button.value = "Speak";
+                    button.innerHTML = "Speak";
+                    recognition.stop();
+                }
+            }
+            // from Stack Overflow
+            function isValidColor(strColor) {
+                var s = new Option().style;
+                s.color = strColor;
+
+                // return 'false' if color wasn't assigned
+                return s.color == strColor.toLowerCase();
+            }
+
+            // say a message
+            function speak(text) {
+                var voice = new SpeechSynthesisUtterance();
+                voice.text = text;
+                u.lang = 'en-US';
+                speechSynthesis.speak(voice);
+            }
+
+        </script> 
+    </body>
+</html>
