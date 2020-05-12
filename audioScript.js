@@ -63,7 +63,7 @@ recognition.onresult = function (event) {
         var words = result.split(" ");
         for(var i =0; i<words.length; i++){
             hasNextWord = (i+1)<words.length;
-            word=words[i];
+            word=words[i].toLowerCase();
             console.log("my word " + word); // indicates the word being tested
             // uses text to speech to respond to "Help" command
             if(word === "help" || word === "Help"){
